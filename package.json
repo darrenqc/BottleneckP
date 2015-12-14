@@ -1,13 +1,14 @@
 {
-  "name": "seenreq",
-  "version": "0.1.0",
+  "name": "bottleneck",
+  "version": "1.0.0",
   "description": "asynchronous rate limiter with priority",
   "main": "./lib/Bottleneck.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/darrenqc/BottleneckP"
+    "url": "git+https://github.com/darrenqc/BottleneckP.git"
   },
   "keywords": [
     "nodejs",
@@ -18,12 +19,10 @@
     "rate",
     "limiting"
   ],
-  "author": "Darren",
+  "author": "darren <darrenqc823@gmail.com> (https://github.com/darrenqc)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/darrenqc/BottleneckP/issues"
   },
-  "homepage": "https://github.com/darrenqc/BottleneckP",
-  "dependencies": {
-  }
+  "homepage": "https://github.com/darrenqc/BottleneckP#readme"
 }
