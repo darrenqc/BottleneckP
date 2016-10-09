@@ -72,7 +72,7 @@ describe('General', function () {
       console.assert(c.size() === 2)
       c.limiter.submit(3, c.job(4))
       console.assert(c.size() === 3)
-      c.limiter.submit(2, c.job(5))
+      c.limiter.submit(0, c.job(5))
       console.assert(c.size() === 4)
     })
 
@@ -84,7 +84,7 @@ describe('General', function () {
       console.assert(c.size() === 0)
       c.limiter.submit(3, c.job(3))
       console.assert(c.size() === 0)
-      c.limiter.submit(2, c.job(4))
+      c.limiter.submit(0, c.job(4))
       console.assert(c.size() === 0)
       c.limiter.submit(5, c.job(5))
       console.assert(c.size() === 0)
@@ -92,7 +92,7 @@ describe('General', function () {
       console.assert(c.size() === 0)
       c.limiter.submit(3, c.job(7))
       console.assert(c.size() === 0)
-      c.limiter.submit(2, c.job(8))
+      c.limiter.submit(0, c.job(8))
       console.assert(c.size() === 0)
       c.limiter.submit(5, c.job(9))
       console.assert(c.size() === 0)
@@ -100,7 +100,7 @@ describe('General', function () {
       console.assert(c.size() === 0)
       c.limiter.submit(3, c.job(11))
       console.assert(c.size() === 1)
-      c.limiter.submit(2, c.job(12))
+      c.limiter.submit(0, c.job(12))
       console.assert(c.size() === 2)
       c.limiter.submit(9, c.last(13, {
         checkResults:[1,2,3,4,5,6,7,8,9,10,12,11,13],
