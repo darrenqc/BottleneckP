@@ -27,6 +27,18 @@ describe('General', function () {
       console.assert(c._priorityRange === 1)
       done()
     })
+
+    it('defaultPriority should be half of priorityRange if not set', function (done) {
+      var c1 = new Bottleneck(1, 1000, 5)
+      console.assert(c1._defaultPriority === 2)
+      var c2 = new Bottleneck(1, 1000, 5, 3)
+      console.assert(c2._defaultPriority === 3)
+      var c3 = new Bottleneck(1, 1000)
+      console.assert(c3._defaultPriority === 0)
+      var c4 = new Bottleneck(1, 1000, 5, 6)
+      console.assert(c4._defaultPriority === 4)
+      done()
+    })
   })
 
   describe('priority', function () {
