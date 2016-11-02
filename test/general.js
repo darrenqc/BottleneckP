@@ -111,5 +111,27 @@ describe('General', function () {
     })
 
   })
+
+  describe('homogeneous', function() {
+    it('should share tasks', function(done) {
+      var c = clusterTest(1, 0, 10, 5, true)
+      c.cluster.key('1').submit(5, c.slowJob('1', 1))
+      c.cluster.key('1').submit(5, c.fastJob('1', 2))
+      c.cluster.key('1').submit(5, c.fastJob('1', 3))
+      c.cluster.key('2').submit(5, c.fastJob('2', 4))
+      console.assert(c.size() === 2)
+      c.cluster.key('1').submit(5, c.last('1', 5, {
+        checkResults:[
+	  {in:'2',out:null,value:4},
+	  {in:'1',out:'2',value:2},
+	  {in:'1',out:'2',value:3},
+	  {in:'1',out:null,value:1},
+	  {in:'1',out:'2',value:5}
+	],
+	checkDuration:800,
+	done:done
+      }))
+    })
+  })
   
 })
