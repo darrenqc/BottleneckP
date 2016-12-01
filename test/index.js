@@ -108,7 +108,7 @@ global.clusterTest = function(arg1, arg2, arg3, arg4, arg5) {
       }
     },
     checkDuration: function (shouldBe) {
-      var results = getResults()
+      var results = getResults();
       var min = shouldBe - 10
       var max = shouldBe + 50
       console.assert(results.callsDuration > min)

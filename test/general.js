@@ -133,5 +133,40 @@ describe('General', function () {
       }))
     })
   })
+
+  describe('cluster property', function() {
+    it('should have correct waitingClients and empty property', function(done) {
+      var c = clusterTest(1, 0)
+      console.assert(c.cluster.empty === true)
+      console.assert(c.cluster.waitingClients === 0)
+      console.assert(c.cluster.unfinishedClients === 0)
+      c.cluster.key('1').submit(5, c.fastJob('1', 1))
+      console.assert(c.cluster.waitingClients === 0)
+      console.assert(c.cluster.unfinishedClients === 1)
+      c.cluster.key('1').submit(5, c.fastJob('1', 2))
+      console.assert(c.cluster.waitingClients === 1)
+      console.assert(c.cluster.unfinishedClients === 2)
+      console.assert(c.cluster.empty === false)
+      c.cluster.key('2').submit(5, c.fastJob('2', 3))
+      console.assert(c.cluster.waitingClients === 1)
+      console.assert(c.cluster.unfinishedClients === 3)
+      c.cluster.key('1').submit(5, c.last('1', 4, {
+        checkResults:[
+          {in:'1',out:null,value:1},
+	  {in:'2',out:null,value:3},
+	  {in:'1',out:null,value:2},
+	  {in:'1',out:null,value:4}
+	],
+	checkDuration:700,
+	done:function() {
+	  console.assert(c.cluster.empty === true)
+	  console.assert(c.cluster.waitingClients === 0)
+	  console.assert(c.cluster.unfinishedClients === 0)
+	  done()
+	}
+      }))
+    })
+    console.assert(c.cluster.waitingClients === 2)
+  })
   
 })
