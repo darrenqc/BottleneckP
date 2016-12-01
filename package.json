@@ -1,6 +1,6 @@
 {
   "name": "bottleneckp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "asynchronous rate limiter with priority",
   "main": "./lib/Bottleneck.js",
   "scripts": {

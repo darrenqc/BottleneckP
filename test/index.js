@@ -67,7 +67,7 @@ global.clusterTest = function(arg1, arg2, arg3, arg4, arg5) {
   var context = {
     cluster:cluster,
     size: function() {
-      return cluster._waitingClients()
+      return cluster.waitingClients
     },
     fastJob: function(inLimiter, value) {
       return function(cb, outLimiter) {
